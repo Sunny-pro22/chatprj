@@ -118,17 +118,7 @@ async function isLoggedin(req,res,next){
     res.redirect("/")
 }
 //upload files
-app.post("/upload",isLoggedin,upload.single("file"),async (req,res)=>{
-    if(!req.file){
-        res.status(404).send("nofiles were given")
-    }
-    const user=await userModel.findOne({
-        username:req.session.passport.user
-    })
-   profileModel.create({
-    image:req.file.filename
-   })
-})
+
 app.get("/profile/:id",async(req,res)=>{
     let {id}=req.params;
 
